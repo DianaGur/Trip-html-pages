@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tel Aviv, Israel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .image-container img {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .map {
+      width: 100%;
+      height: 400px;
+      margin-top: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    ul li {
+      margin-bottom: 15px;
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Tel Aviv, Israel</h1>
+    <p>Tel Aviv is a vibrant and cosmopolitan city on Israel's Mediterranean coast, known for its stunning beaches, rich cultural heritage, and bustling nightlife.</p>
+
+    <h2>Recommended Attractions</h2>
+    <ul>
+      
+        <li><strong>Tel Aviv Museum of Art</strong> – The museum features a diverse collection of Israeli and international art, as well as rotating exhibitions.. Hours: Sunday to Thursday: 10:00–18:00, Friday: 10:00–14:00, Saturday: 10:00–16:00</li>
+      
+        <li><strong>Jaffa Flea Market</strong> – This bustling market offers a wide range of goods, from antiques to souvenirs, and is a great place to find unique gifts or mementos.. Hours: Sunday to Friday: 8:00–17:00, Saturday: 9:00–16:00</li>
+      
+        <li><strong>Hilton Beach</strong> – One of Tel Aviv's most popular beaches, known for its lively atmosphere and stunning sunsets.. Hours: Open daily from 8:00–20:00</li>
+      
+    </ul>
+
+    <h2>Photos of Tel Aviv, Israel</h2>
+    <div class="image-container">
+      
+  <img src="undefined" alt="Tel Aviv Museum of Art">
+
+  <img src="undefined" alt="Jaffa Flea Market">
+
+  <img src="undefined" alt="Hilton Beach">
+
+    </div>
+
+    <h2>Interactive Map</h2>
+    <div id="map" class="map"></div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([32.076944, 34.785833], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    
+      L.marker([32.076944, 34.785833]).addTo(map).bindPopup('Tel Aviv Museum of Art');
+    
+      L.marker([32.066111, 34.774722]).addTo(map).bindPopup('Jaffa Flea Market');
+    
+      L.marker([32.083611, 34.781667]).addTo(map).bindPopup('Hilton Beach');
+    
+  </script>
+</body>
+</html>
