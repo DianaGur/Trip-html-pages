@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Krabi, Thailand</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .image-container img {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .map {
+      width: 100%;
+      height: 400px;
+      margin-top: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    ul li {
+      margin-bottom: 15px;
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Krabi, Thailand</h1>
+    <p>Krabi is a southern Thai province known for its stunning beaches, islands, and limestone cliffs</p>
+
+    <h2>Recommended Attractions</h2>
+    <ul>
+      
+        <li><strong>Railay Beach</strong> – A picturesque beach surrounded by towering cliffs, accessible only by boat. Hours: 9:00–18:00</li>
+      
+        <li><strong>Tonsai Beach</strong> – A quieter beach with crystal-clear waters and a scenic view of the surrounding cliffs. Hours: 9:00–18:00</li>
+      
+        <li><strong>Krabi Town Night Market</strong> – A bustling night market offering a variety of street food, souvenirs, and local handicrafts. Hours: 18:00–22:00</li>
+      
+    </ul>
+
+    <h2>Photos of Krabi, Thailand</h2>
+    <div id="unsplash-photos" class="image-container"></div>
+
+    <h2>Interactive Map</h2>
+    <div id="map" class="map"></div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([7.7722, 99.1233], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    
+      L.marker([7.7722, 99.1233]).addTo(map).bindPopup('Railay Beach');
+    
+      L.marker([7.7719, 99.1228]).addTo(map).bindPopup('Tonsai Beach');
+    
+      L.marker([7.7942, 99.0055]).addTo(map).bindPopup('Krabi Town Night Market');
+    
+  </script>
+
+  <script>
+    const accessKey = "NqTrvl320pN71LcTkH-GLGShuAEfCbMlD_MUWwksKx8"; 
+    const destination = "Krabi, Thailand";
+    fetch(`https://api.unsplash.com/search/photos?query=${destination}&per_page=3&orientation=landscape&client_id=${accessKey}`)
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("unsplash-photos");
+        data.results.forEach(photo => {
+          const img = document.createElement("img");
+          img.src = photo.urls.regular;
+          img.alt = destination;
+          img.style.maxWidth = "280px";
+          img.style.margin = "10px";
+          img.style.borderRadius = "8px";
+          img.style.boxShadow = "0 2px 6px rgba(0,0,0,0.1)";
+          container.appendChild(img);
+        });
+      })
+      .catch(err => {
+        console.error("שגיאה בטעינת תמונות מ־Unsplash:", err);
+      });
+  </script>
+</body>
+</html>
